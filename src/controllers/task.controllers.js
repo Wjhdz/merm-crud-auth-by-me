@@ -8,7 +8,7 @@ export const getTasks = async (req, res) => {
 export const createTask = async (req, res) => {
   try {
     const { title, description } = req.body;
-    const newTask = new Task({ title, description });
+    const newTask = new Task({ title, description, user: req.user.id });
     const saveTask = await newTask.save();
     return res.status(200).json(saveTask);
   } catch (error) {
